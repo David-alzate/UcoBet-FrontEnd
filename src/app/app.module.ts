@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterCityComponent } from './modules/city/components/register-city/register-city/register-city.component';
+import { RegisterCityComponent } from './modules/City/components/Register-City/register-city/register-city.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { RegisterCityComponent } from './modules/city/components/register-city/r
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
