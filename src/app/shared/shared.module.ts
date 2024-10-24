@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -48,6 +49,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -71,6 +73,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }

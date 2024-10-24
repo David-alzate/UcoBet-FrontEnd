@@ -5,20 +5,19 @@
 
         <mat-form-field class="ancho">
           <mat-label>Nombre</mat-label>
-          <input type="text" matInput formControlName="nombre">
+          <input type="text" matInput formControlName="cityName">
         </mat-form-field>
 
 
         <mat-form-field class="ancho">
           <mat-label>Estado</mat-label>
-          <mat-select formControlName="tipoIdentificacion">
+          <mat-select formControlName="state">
             <mat-option *ngFor="let item of state" [value]="item">
               {{ item.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        
         <br>
         <button type="submit" class="ancho boton" mat-flat-button [disabled]="CityForm.invalid"
           color="primary">Registrar Ciudad</button>
