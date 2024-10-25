@@ -1,0 +1,39 @@
+.body {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+
+
+.login {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.ancho {
+    width: 100%;
+}
+
+.boton {
+    padding: 10px;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.spinner {
+    display: block;
+    margin: 0 auto;
+    z-index: 999;
+  }
+
+img {
+    width: 25%;
+    margin-bottom: 50px;
+}

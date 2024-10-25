@@ -22,11 +22,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     MatInputModule,
@@ -49,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
   ],
   exports: [
     CommonModule,
@@ -73,7 +76,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ]
 })
 export class SharedModule { }

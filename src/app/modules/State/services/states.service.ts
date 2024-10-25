@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class StatesService {
 
-  private API_SERVER = "https://localhost:8443/general/api/v1/states"
+  private API_SERVER = "http://localhost:8080/general/api/v1/states"
 
   constructor(private httpCliente: HttpClient) { }
 

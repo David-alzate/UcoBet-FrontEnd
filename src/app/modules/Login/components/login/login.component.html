@@ -1,0 +1,25 @@
+<div class="body">
+  <div class="login">
+    <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+    <form *ngIf="!loading" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+      <img src="../../../../../assets/img/perfil-del-usuario.png" />
+      <mat-form-field class="ancho">
+        <mat-label>Número De Identificación</mat-label>
+        <input type="number" matInput formControlName="numeroIdentificacion" />
+      </mat-form-field>
+      <mat-form-field class="ancho">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
+        <button type="button" mat-icon-button matSuffix (click)="toggleVisibility()" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br />
+      <button type="submit" class="ancho boton" mat-flat-button [disabled]="loginForm.invalid" color="primary">
+        Iniciar Sesion
+      </button>
+      <div type="submit" class="ancho boton" mat-flat-button id="google-signin-button" *ngIf="!loading"></div>
+    </form>
+  </div>
+</div>
