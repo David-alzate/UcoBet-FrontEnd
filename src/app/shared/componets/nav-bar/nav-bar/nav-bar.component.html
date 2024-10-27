@@ -1,10 +1,21 @@
 <mat-toolbar color="primary" *ngIf="showNavbar">
-    <span>UcoBet</span>
+    <span>Bienvenido {{userProfile?.name}}</span>
     <span class="example-spacer"></span>
     <button mat-button [routerLink]="['/register-city']">
-        Registrar Ciudad
+      Registrar Ciudad
     </button>
-    <button (click)="logout()" mat-icon-button matTooltip="Cerrar Sesion" [routerLink]="['/login']">
-        <mat-icon>logout</mat-icon>
-      </button>
-  </mat-toolbar>
+    <button (click)="logout()" mat-icon-button matTooltip="Cerrar Sesion">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <div *ngIf="isLoggedIn" class="profile-container">
+      <img 
+        [src]="userProfile?.picture" 
+        alt="profile" 
+        class="profile-pic" 
+        *ngIf="userProfile?.picture; else loadingImage"
+      />
+      <ng-template #loadingImage>
+        <p>Loading image...</p>
+      </ng-template>
+    </div>
+</mat-toolbar>

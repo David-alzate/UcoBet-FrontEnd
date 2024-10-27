@@ -2,7 +2,7 @@
   <div class="login">
     <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
     <form *ngIf="!loading" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
-      <img src="../../../../../assets/img/perfil-del-usuario.png" />
+      <img class="img-form" src="../../../../../assets/img/perfil-del-usuario.png" />
       <mat-form-field class="ancho">
         <mat-label>Número De Identificación</mat-label>
         <input type="number" matInput formControlName="numeroIdentificacion" />
@@ -15,11 +15,16 @@
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
       </mat-form-field>
-      <br />
-      <button type="submit" class="ancho boton" mat-flat-button [disabled]="loginForm.invalid" color="primary">
-        Iniciar Sesion
-      </button>
-      <div type="submit" class="ancho boton" mat-flat-button id="google-signin-button" *ngIf="!loading"></div>
+
+      <div class="button-container">
+        <button type="submit" class="ancho boton" mat-flat-button [disabled]="loginForm.invalid" color="primary">
+          Iniciar Sesion
+        </button>
+        <div id="google-signin-button" class="ancho boton" *ngIf="!loading" (click)="signInWithGoogle()">
+          <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="Google" class="google-icon" />
+          Iniciar sesión con Google
+        </div>
+      </div>
     </form>
   </div>
 </div>

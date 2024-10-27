@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './modules/Login/components/login/login.component';
 import { RegisterCityComponent } from './modules/City/components/Register-City/register-city/register-city.component';
+import { NavBarComponent } from './shared/componets/nav-bar/nav-bar/nav-bar.component';
 
 const routes: Routes = [  
   {path: '', component: LoginComponent},
