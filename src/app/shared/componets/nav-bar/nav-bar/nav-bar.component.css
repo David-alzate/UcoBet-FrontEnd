@@ -4,12 +4,12 @@
 
 .profile-container {
     display: flex;
-    align-items: center; /* Alinea verticalmente el contenido */
+    align-items: center;
 }
 
 .profile-pic {
-    width: 40px; /* Ajusta el tamaño según sea necesario */
-    height: 40px; /* Asegúrate que el alto y ancho sean iguales para hacerla circular */
-    border-radius: 50%; /* Esto hará que la imagen sea circular */
-    margin-left: 10px; /* Espacio a la izquierda de la imagen */
+    width: 40px;
+    height: 40px; 
+    border-radius: 50%;
+    margin-left: 10px;
 }

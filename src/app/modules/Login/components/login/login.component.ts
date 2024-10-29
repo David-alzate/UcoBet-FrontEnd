@@ -7,7 +7,7 @@ import { AuthGoogleService } from '../../services/auth-google.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
   userProfile: any;
   loading = false;
   loginForm: FormGroup;
@@ -15,6 +15,19 @@ export class LoginComponent{
 
   toggleVisibility() {
     this.hide = !this.hide;
+  }
+
+  ngOnInit() {
+    // Suscripción para obtener el perfil de usuario de Google
+    this.authService.profile$.subscribe(
+      (profile: any) => {
+        console.log(profile); // Verifica el perfil en la consola
+        this.userProfile = profile;
+      },
+      (error) => {
+        console.error("Error al cargar el perfil:", error);
+      }
+    );
   }
 
   constructor(public fb: FormBuilder) {

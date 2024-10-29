@@ -17,7 +17,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthGoogleService,
-    private cdRef: ChangeDetectorRef // Agregado para manejar la detección de cambios manualmente
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -29,22 +28,14 @@ export class NavBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.profileSubscription = this.authService.profile$.subscribe(profile => {
-      this.userProfile = profile; // Asigna el perfil al componente
-
-      if (profile) {
-        // Si hay un perfil, cargar la imagen de usuario desde la API
-        this.authService.userProfile().subscribe((data: any) => {
-          this.userProfile.picture = data.picture; // Actualiza la imagen de perfil
-          
-          // Forzar la detección de cambios
-          this.cdRef.detectChanges();
-        });
-      }
+      this.userProfile = profile;
+      console.log(profile);
+  
     });
   }
 
   ngOnDestroy(): void {
-    this.profileSubscription.unsubscribe(); // Limpia la suscripción
+    this.profileSubscription.unsubscribe();
   }
 
   logout() {

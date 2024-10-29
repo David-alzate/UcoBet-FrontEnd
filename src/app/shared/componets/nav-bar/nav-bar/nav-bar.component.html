@@ -7,7 +7,7 @@
     <button (click)="logout()" mat-icon-button matTooltip="Cerrar Sesion">
       <mat-icon>logout</mat-icon>
     </button>
-    <div *ngIf="isLoggedIn" class="profile-container">
+    <div class="profile-container">
       <img 
         [src]="userProfile?.picture" 
         alt="profile" 
