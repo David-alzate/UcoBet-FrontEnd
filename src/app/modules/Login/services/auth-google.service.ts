@@ -57,7 +57,7 @@ export class AuthGoogleService {
       }
     });
   }
-
+  
   isLoggedIn(): boolean {
     return this.oAuthService.hasValidAccessToken();
   }

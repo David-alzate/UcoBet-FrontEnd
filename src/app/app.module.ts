@@ -15,6 +15,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
+import { ListStatesComponent } from './modules/State/components/List-states/list-states/list-states.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {
     RegisterCityComponent,
     LoginComponent,
     NavBarComponent,
+    ListStatesComponent
   ],
   imports: [
     BrowserModule,
