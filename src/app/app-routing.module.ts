@@ -7,9 +7,9 @@ import { ListStatesComponent } from './modules/State/components/List-states/list
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'register-city', component: RegisterCityComponent },
-  { path: 'list-states', component: ListStatesComponent },
-  { path: '**', redirectTo: 'login' } // Redirige cualquier ruta no encontrada al login
+  { path: 'register-city', component: RegisterCityComponent, canActivate: [AuthGuard] },
+  { path: 'list-states', component: ListStatesComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'login' }
 ];
 
 

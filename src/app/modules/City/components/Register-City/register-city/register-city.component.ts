@@ -14,6 +14,7 @@ export class RegisterCityComponent implements OnInit{
   CityForm: FormGroup;
   state: any;
   city: any;
+  isLoggedIn: boolean = false;
 
   constructor(
     public fb: FormBuilder,

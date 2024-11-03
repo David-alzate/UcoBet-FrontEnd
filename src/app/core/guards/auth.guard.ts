@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { map, filter, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AuthGoogleService } from 'src/app/modules/Login/services/auth-google.service';
 
 @Injectable({
@@ -8,12 +10,17 @@ import { AuthGoogleService } from 'src/app/modules/Login/services/auth-google.se
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthGoogleService, private router: Router) {}
 
-  canActivate(): boolean {
-    if (this.authService.isLoggedIn()) {
-      return true; // Permite la navegación
-    } else {
-      this.router.navigate(['/login']); // Redirige al login
-      return false; // Bloquea la navegación
-    }
+  canActivate(): Observable<boolean> {
+    return this.authService.isLoggedIn$.pipe(
+      filter(isLoggedIn => isLoggedIn !== null),
+      take(1),
+      map(isLoggedIn => {
+        if (!isLoggedIn) {
+          this.router.navigate(['/login']);
+          return false;
+        }
+        return true;
+      })
+    );
   }
 }

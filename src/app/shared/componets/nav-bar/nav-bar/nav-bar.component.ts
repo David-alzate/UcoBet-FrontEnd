@@ -13,10 +13,12 @@ export class NavBarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   userProfile: any;
   private profileSubscription!: Subscription;
+  token: string | null = null;
 
   constructor(
     private router: Router,
     private authService: AuthGoogleService,
+    private cdr: ChangeDetectorRef
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -26,11 +28,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
     this.profileSubscription = this.authService.profile$.subscribe(profile => {
       this.userProfile = profile;
-      console.log(profile);
-  
+      this.isLoggedIn = !!profile;
+      this.token = this.authService.idToken;
+      
+      console.log("Is Logged In:", this.isLoggedIn);
+      console.log("ID Token:", this.token);
     });
   }
 

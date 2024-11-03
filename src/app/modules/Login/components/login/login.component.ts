@@ -18,10 +18,9 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit() {
-    // Suscripción para obtener el perfil de usuario de Google
     this.authService.profile$.subscribe(
       (profile: any) => {
-        console.log(profile); // Verifica el perfil en la consola
+        console.log(profile);
         this.userProfile = profile;
       },
       (error) => {
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit{
   private authService = inject(AuthGoogleService);
 
   get isLogged() {
-    return this.authService.isLoggedIn(); 
+    return this.authService.isAuthenticated();
   }
 
   signInWithGoogle() {
@@ -48,6 +47,5 @@ export class LoginComponent implements OnInit{
   }
 
   iniciarSesion() {
-    // Implementa la lógica de inicio de sesión si es necesario
   }
 }
