@@ -45,11 +45,12 @@ export class AuthGoogleService {
     this.oAuthService.configure(authConfig);
     this.oAuthService.setupAutomaticSilentRefresh();
     this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-      if (this.oAuthService.hasValidIdToken()) {
+      if (this.oAuthService.hasValidIdToken() && this.oAuthService.hasValidAccessToken()) {
         this.isLoggedInSubject.next(true);
         this.loadUserProfile();
       } else {
         this.isLoggedInSubject.next(false);
+        this.router.navigate(['/login']); // Redirige al login si no es válido
       }
     });
   }
@@ -60,11 +61,15 @@ export class AuthGoogleService {
       if (event.type === 'token_received') {
         this.isLoggedInSubject.next(true);
         this.loadUserProfile();
+      } else if (event.type === 'token_error') {
+        console.error('Error de autenticación:', event);
+        this.isLoggedInSubject.next(false);
+        this.router.navigate(['/login']); // Redirige al login en caso de error
       }
     });
   }
 
-  logout() {
+  logout() {  
     this.oAuthService.revokeTokenAndLogout();
     this.oAuthService.logOut();
     this.isLoggedInSubject.next(false);

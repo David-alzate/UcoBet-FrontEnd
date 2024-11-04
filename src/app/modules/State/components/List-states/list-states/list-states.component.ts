@@ -49,21 +49,24 @@ export class ListStatesComponent implements OnInit {
   }
 
   cargarStates() {
-    this.stateService.getAllStates().subscribe(resp => {
-      this.States = resp.datos;
-      this.dataSource.data = this.States;
-      this.cdr.detectChanges();
-      if (this.paginator && this.dataSource) {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.paginator._changePageSize(this.paginator.pageSize);
-      }
-    },
+    this.stateService.getAllStates().subscribe(
+      resp => {
+        this.States = resp.datos;
+        this.dataSource.data = this.States;
+        this.cdr.detectChanges();
+  
+        if (this.paginator && this.dataSource) {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.paginator._changePageSize(this.paginator.pageSize);
+        }
+      },
       error => {
         console.error(error);
-      });
+      }
+    );
   }
-
+  
   eliminarState(state: { id: any; }): void {
 
   }

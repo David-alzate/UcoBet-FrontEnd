@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthGoogleService } from '../../Login/services/auth-google.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesService {
 
-  private API_SERVER = "http://localhost:8080/general/api/v1/cities"
+  private API_SERVER = "https://localhost:8080/general/api/v1/cities";
 
-  constructor(private httpCliente: HttpClient) { }
+  constructor(
+    private httpCliente: HttpClient,
+    private authGoogleService: AuthGoogleService 
+  ) {}
 
   public saveCity(city: any): Observable<any> {
-    return this.httpCliente.post(this.API_SERVER, city);
+    const token = this.authGoogleService.idToken;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.httpCliente.post(this.API_SERVER, city, { headers });
   }
 }
