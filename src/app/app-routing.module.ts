@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register-city', component: RegisterCityComponent, canActivate: [AuthGuard] },
   { path: 'list-states', component: ListStatesComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'login' }
 ];
 
 
