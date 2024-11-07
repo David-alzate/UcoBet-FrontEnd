@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CitiesService } from '../../../services/cities.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router'; 
 
 interface City {
   id: any;
@@ -29,7 +30,8 @@ export class ListCitiesComponent implements OnInit{
   constructor(
     public cityService: CitiesService,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
   ) {
 
   }
@@ -55,7 +57,7 @@ export class ListCitiesComponent implements OnInit{
         this.States = resp.datos;
         this.dataSource.data = this.States;
         this.cdr.detectChanges();
-  
+
         if (this.paginator && this.dataSource) {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -63,15 +65,15 @@ export class ListCitiesComponent implements OnInit{
         }
       },
       error => {
-        console.error(error);
-        // Mostrar mensaje de error con SweetAlert2
         Swal.fire({
           title: 'Error al conectar con el servidor',
           text: "No se pudo obtener la información del servidor. Intenta nuevamente más tarde.",
-          icon: 'error',
+          icon: 'warning',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Aceptar',
           buttonsStyling: true
+        }).then(() => {
+          this.router.navigate(['/login']);
         });
       }
     );

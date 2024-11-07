@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { StatesService } from 'src/app/modules/State/services/states.service';
 import { CitiesService } from '../../../services/cities.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router'; 
+import { AuthGoogleService } from 'src/app/modules/Login/services/auth-google.service';
 
 @Component({
   selector: 'app-register-city',
@@ -21,7 +23,9 @@ export class RegisterCityComponent implements OnInit{
     public fb: FormBuilder,
     public stateService: StatesService,
     public cityService: CitiesService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private authService: AuthGoogleService
   ) {
     this.CityForm = this.fb.group({
       cityName: ['', Validators.required],
@@ -36,13 +40,17 @@ export class RegisterCityComponent implements OnInit{
         this.state = resp.datos;
       },
       error => {
+        // Mostrar el mensaje de error con SweetAlert2
         swal.fire({
           title: 'Error al conectar con el servidor',
-          text: "No se pudo obtener la informacion del servidor. Intenta nuevamente más tarde.",
-          icon: 'error',
+          text: "No se pudo obtener la información del servidor. Intenta nuevamente más tarde.",
+          icon: 'warning',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Aceptar',
           buttonsStyling: true
+        }).then(() => {
+          this.router.navigate(['/login']);
+          this.authService.logout();
         });
       }
     );

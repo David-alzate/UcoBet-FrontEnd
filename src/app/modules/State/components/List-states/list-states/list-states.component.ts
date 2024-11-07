@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { StatesService } from '../../../services/states.service';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 interface State {
   id: any;
@@ -29,7 +30,8 @@ export class ListStatesComponent implements OnInit {
   constructor(
     public stateService: StatesService,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
   ) {
 
   }
@@ -55,7 +57,7 @@ export class ListStatesComponent implements OnInit {
         this.States = resp.datos;
         this.dataSource.data = this.States;
         this.cdr.detectChanges();
-  
+
         if (this.paginator && this.dataSource) {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -66,15 +68,16 @@ export class ListStatesComponent implements OnInit {
         Swal.fire({
           title: 'Error al conectar con el servidor',
           text: "No se pudo obtener la información del servidor. Intenta nuevamente más tarde.",
-          icon: 'error',
+          icon: 'warning',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Aceptar',
           buttonsStyling: true
+        }).then(() => {
+          this.router.navigate(['/login']);
         });
       }
     );
   }
-  
   
   eliminarState(state: { id: any; }): void {
 
