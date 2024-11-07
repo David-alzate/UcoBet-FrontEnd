@@ -2,32 +2,32 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { StatesService } from '../../../services/states.service';
 import { MatDialog } from '@angular/material/dialog';
+import { CitiesService } from '../../../services/cities.service';
 import Swal from 'sweetalert2';
 
-interface State {
+interface City {
   id: any;
   nombre: string;
-  country: string;
+  state: string;
 }
 
 @Component({
-  selector: 'app-list-states',
-  templateUrl: './list-states.component.html',
-  styleUrl: './list-states.component.css'
+  selector: 'app-list-cities',
+  templateUrl: './list-cities.component.html',
+  styleUrl: './list-cities.component.css'
 })
-export class ListStatesComponent implements OnInit {
+export class ListCitiesComponent implements OnInit{
 
-  States: State[] = []
-  displayedColumns: string[] = ['nombre', 'country', 'acciones'];
-  dataSource: MatTableDataSource<State> = new MatTableDataSource<State>();
+  States: City[] = []
+  displayedColumns: string[] = ['nombre', 'state', 'acciones'];
+  dataSource: MatTableDataSource<City> = new MatTableDataSource<City>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    public stateService: StatesService,
+    public cityService: CitiesService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
@@ -35,7 +35,7 @@ export class ListStatesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cargarStates();
+    this.cargarCiudades();
   }
 
   ngAfterViewInit() {
@@ -49,8 +49,8 @@ export class ListStatesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  cargarStates(): void {
-    this.stateService.getAllStates().subscribe(
+  cargarCiudades(): void {
+    this.cityService.getAllCities().subscribe(
       resp => {
         this.States = resp.datos;
         this.dataSource.data = this.States;
@@ -63,6 +63,8 @@ export class ListStatesComponent implements OnInit {
         }
       },
       error => {
+        console.error(error);
+        // Mostrar mensaje de error con SweetAlert2
         Swal.fire({
           title: 'Error al conectar con el servidor',
           text: "No se pudo obtener la información del servidor. Intenta nuevamente más tarde.",
@@ -75,12 +77,11 @@ export class ListStatesComponent implements OnInit {
     );
   }
   
-  
-  eliminarState(state: { id: any; }): void {
+  eliminarCity(state: { id: any; }): void {
 
   }
 
-  editarState(id: any) {
+  editarCity(id: any) {
   }
 
 }

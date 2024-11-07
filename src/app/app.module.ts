@@ -16,6 +16,7 @@ import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
 import { ListStatesComponent } from './modules/State/components/List-states/list-states/list-states.component';
+import { ListCitiesComponent } from './modules/City/components/list-cities/list-cities/list-cities.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListStatesComponent } from './modules/State/components/List-states/list
     RegisterCityComponent,
     LoginComponent,
     NavBarComponent,
-    ListStatesComponent
+    ListStatesComponent,
+    ListCitiesComponent
   ],
   imports: [
     BrowserModule,

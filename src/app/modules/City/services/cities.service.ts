@@ -23,4 +23,13 @@ export class CitiesService {
 
     return this.httpCliente.post(this.API_SERVER, city, { headers });
   }
+
+  public getAllCities(): Observable<any> {
+    const token = this.authGoogleService.idToken;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.httpCliente.get(this.API_SERVER, { headers });
+  }
 }
