@@ -32,8 +32,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
       this.userProfile = profile;
       this.isLoggedIn = !!profile;
       this.token = this.authService.idToken;
-      
-      console.log("Is Logged In:", this.isLoggedIn);
       console.log("ID Token:", this.token);
     });
   }

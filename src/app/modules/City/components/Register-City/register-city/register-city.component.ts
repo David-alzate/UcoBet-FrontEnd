@@ -40,7 +40,6 @@ export class RegisterCityComponent implements OnInit{
         this.state = resp.datos;
       },
       error => {
-        // Mostrar el mensaje de error con SweetAlert2
         swal.fire({
           title: 'Error al conectar con el servidor',
           text: "No se pudo obtener la información del servidor. Intenta nuevamente más tarde.",
@@ -65,8 +64,6 @@ export class RegisterCityComponent implements OnInit{
         stateId: this.CityForm.value.state.id
       };
   
-      console.log('Datos del formulario a enviar:', cityData);
-  
       this.cityService.saveCity(cityData).subscribe(
         resp => {
           this._snackBar.open(resp.mensajes[0], '', {
@@ -76,10 +73,8 @@ export class RegisterCityComponent implements OnInit{
           });
           this.CityForm.reset();
           this.city.push(resp);
-          console.log('Respuesta del servidor:', resp);
         },
         error => {
-          console.error('Error al guardar la ciudad:', error);
           this._snackBar.open(error.error.mensajes[0], '', {
             duration: 5000,
             horizontalPosition: 'center',

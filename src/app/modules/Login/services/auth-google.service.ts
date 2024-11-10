@@ -33,10 +33,8 @@ export class AuthGoogleService {
     }).subscribe(
       profile => {
         this.profileSubject.next(profile);
-        console.log("Perfil de usuario cargado:", profile);
       },
       error => {
-        console.error("Error al cargar el perfil:", error);
       }
     );
   }
@@ -50,7 +48,7 @@ export class AuthGoogleService {
         this.loadUserProfile();
       } else {
         this.isLoggedInSubject.next(false);
-        this.router.navigate(['/login']); // Redirige al login si no es válido
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -62,9 +60,8 @@ export class AuthGoogleService {
         this.isLoggedInSubject.next(true);
         this.loadUserProfile();
       } else if (event.type === 'token_error') {
-        console.error('Error de autenticación:', event);
         this.isLoggedInSubject.next(false);
-        this.router.navigate(['/login']); // Redirige al login en caso de error
+        this.router.navigate(['/login']); 
       }
     });
   }
